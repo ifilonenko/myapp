@@ -1,0 +1,25 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <% if @user.lists.any? %>
+      <%= render 'shared/list_form' %>
+    <% end %>
+  </aside>
+  <div class="span8">
+      <% if @user.lists.any? %>
+        <h3>My Lists (<%= @user.lists.count %>)</h3>
+        <ol class="lists">
+          <%= render @lists %>
+        </ol>
+        <%= will_paginate @lists %>
+      <% else %>
+        <h3>No Lists? Let's Start! </h3>
+        <%= render 'shared/list_form' %>
+      <% end %>
+</div>
